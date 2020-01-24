@@ -1,5 +1,4 @@
 # TODO
 
-- Add README and wtf LICENSE
-- Add comments to all files describing each
-
+- [X] ~~*Add README and wtf LICENSE*~~ [2020-01-24]
+- [ ] Add comments to all files describing each
