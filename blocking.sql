@@ -11,4 +11,4 @@ select bl.pid as blocked_pid
   join pg_catalog.pg_stat_activity ka
     on kl.pid = ka.pid
     on bl.transactionid = kl.transactionid
-   and bl.pid != kl.pid;
+   --and bl.pid != kl.pid;

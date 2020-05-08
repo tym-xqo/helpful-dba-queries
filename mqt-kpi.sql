@@ -1,5 +1,6 @@
 select sum(total_time)/sum(calls) as mean_query_time
-    --  , rtrim(lower(substr(ltrim(query), 1, position(' ' IN query))))  as sql_verb
+     , sum(calls) as total_calls
+     , rtrim(lower(substr(ltrim(query), 1, position(' ' IN query))))  as sql_verb
   from pg_stat_statements
  where lower(query) != 'select 1'
    and rtrim(lower(substr(ltrim(query), 1, position(' ' IN query)))) in (
@@ -16,7 +17,8 @@ select sum(total_time)/sum(calls) as mean_query_time
                        , 'wmxdbuser'
                   )
    )
-  and calls > 100
-  -- group by 2
---  order by 1 desc
+   and calls > 100
+ group by 3
+ order by 2 desc
 ;
+

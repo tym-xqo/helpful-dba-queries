@@ -13,7 +13,8 @@ select table_schema
      , pg_size_pretty(size) as size
      , pg_size_pretty(total_size) as total_size 
   from rtsize x 
- order by x.size desc
-       , x.total_size desc
+ order by --x.size desc
+       --,
+       x.total_size desc
        , table_schema
-       , table_name;'
+       , table_name;
