@@ -9,7 +9,6 @@ select pid
      , wait_event
      , state
   from pg_stat_activity
-  -- where application_name='psql'
  where state != 'idle'
    and backend_type = 'client backend'
    and pid != pg_backend_pid()
