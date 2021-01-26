@@ -12,4 +12,4 @@ select pid
  where state != 'idle'
    and backend_type = 'client backend'
    and pid != pg_backend_pid()
- order by query_start;
+ order by xact_start;

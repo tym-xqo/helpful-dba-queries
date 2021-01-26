@@ -11,4 +11,4 @@ select pid
   from pg_stat_activity
  where backend_type = 'client backend'
    and pid != pg_backend_pid()
- order by query_start;
+ order by xact_start nulls last
