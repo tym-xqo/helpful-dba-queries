@@ -1,3 +1,4 @@
+-- with l as (
 with b as (
     select pid as blocked_pid
          , unnest(pg_blocking_pids(pid)) as blocking_pid
@@ -15,5 +16,9 @@ select b.blocked_pid
     on b.blocked_pid = a.pid
   join pg_stat_activity c
     on b.blocking_pid = c.pid 
-    -- where c.state = 'idle in transaction'
- order by c.query_start;
+--  where c.state = 'idle in transaction'
+ order by c.query_start
+--  )
+--  select pg_terminate_backend(pid) from timed_activity where pid in (select distinct blocking_pid from l)
+ 
+ ;
