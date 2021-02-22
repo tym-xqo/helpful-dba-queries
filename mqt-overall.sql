@@ -15,6 +15,7 @@ select sum(total_time)/sum(calls) as mean_query_time
                        , 'wmxdbuser'
                   )
    )
-   and calls > 100
+  --  and calls >  (select percentile_cont(0.5) 
+  --                within group(order by calls) 
+  --                  from pg_stat_statements)
 ;
-
