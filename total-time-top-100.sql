@@ -4,7 +4,7 @@ select (total_time / 1000 / 60) as total_minutes
      , stddev_time
      , max_time
      , min_time
-     , query
+     , left(query, 180) as query_snip
   from pg_stat_statements
- order by 1 desc
+ order by 2 desc
  limit 100;

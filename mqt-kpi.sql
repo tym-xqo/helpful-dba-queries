@@ -14,10 +14,10 @@ select sum(total_time)/sum(calls) as mean_query_time
                   )
    )
   --  and calls > 
-  --             --  (select avg(calls)
-  --              (select percentile_cont(0.99) 
-  --               within group(order by calls) 
-  --                  from pg_stat_statements)
+              --  (select avg(calls)
+              --  (select percentile_cont(0.99) 
+              --   within group(order by calls) 
+              --      from pg_stat_statements)
  group by rtrim(lower(substr(ltrim(regexp_replace(query, E'[\\n\\r]+', ' ', 'g' )), 1, position(' ' IN query))))
 union
 select sum(total_time)/sum(calls)
