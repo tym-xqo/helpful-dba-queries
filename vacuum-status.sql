@@ -9,7 +9,6 @@ select relname
   from pg_stat_user_tables
  where schemaname= 'public'
   --  and last_autovacuum is null
- order by --n_live_tup * n_dead_tup/nullif(n_live_tup::float,0) desc nulls last;
-last_autovacuum
-desc nulls last
+ order by relname --n_live_tup * n_dead_tup/nullif(n_live_tup::float,0) desc nulls last;
+-- desc nulls last
 ;

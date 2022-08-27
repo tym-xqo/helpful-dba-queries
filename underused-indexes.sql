@@ -1,9 +1,9 @@
-select s.schemaname as sch 
-     , s.relname as rel 
+select s.schemaname as schema
+     , s.relname as tbl
      , s.indexrelname as idx 
      , s.idx_scan as scans 
-     , pg_size_pretty(pg_relation_size(s.relid)) as ts 
-     , pg_size_pretty(pg_relation_size(s.indexrelid)) as "is"
+     , pg_size_pretty(pg_relation_size(s.relid)) as table_size
+     , pg_size_pretty(pg_relation_size(s.indexrelid)) as index_size 
   from pg_stat_user_indexes s
   join pg_index i
     on i.indexrelid=s.indexrelid

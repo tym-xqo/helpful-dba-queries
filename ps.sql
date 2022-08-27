@@ -4,7 +4,7 @@ select pid
      , datname
      , usename
      , application_name
-     , left(query, 40) as query_snippet
+     , left(query, 25) || '..' || right(query, 25)  as query_snippet
      , wait_event_type
      , wait_event
      , state

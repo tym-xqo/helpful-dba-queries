@@ -7,6 +7,7 @@ with b as (
 )
 select b.blocked_pid
      , b.blocking_pid
+     --, a.query as blocked_query
      , left(a.query, 40) as blocked_query
      , left(c.query, 40) as blocking_query
      , age(now(), c.xact_start) as blocking_age
