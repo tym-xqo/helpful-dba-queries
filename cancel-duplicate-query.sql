@@ -1,20 +1,15 @@
 prepare cancel_repeats (text) as
     -- fetch repeated queries matching query snippet pattern
-    with q as (
-    select query 
-      from timed_activity
-     where query like $1     
-     group by query
-    having count(*) > 1
-    ),
+
     -- fetch minimum pid for each repeated query
     -- TODO: make this based on `query_start` and get pid for min of that
-    mq as (
+      with mq as (
     select min(pid) as min_pid
          , q.query 
       from timed_activity
       join q using (query)
      group by q.query
+    having count(*) > 1
     )
     -- =======
     -- Uncomment below (and comment out the other main `select`) to check for 
