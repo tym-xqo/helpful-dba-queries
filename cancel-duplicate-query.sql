@@ -7,6 +7,7 @@ prepare cancel_repeats (text) as
     select min(pid) as min_pid
          , query 
       from timed_activity
+     where query like $1
      group by query
     having count(*) > 1
     )
@@ -17,8 +18,9 @@ prepare cancel_repeats (text) as
     -- select min_pid
     --      , t.pid
     --      , mq.query
+    --      , t.usename
     --   from mq
-    --   join timed_activity t
+    --   join timed_activity as t
     --  using (query)
     --  order by mq.query
     -- =======
