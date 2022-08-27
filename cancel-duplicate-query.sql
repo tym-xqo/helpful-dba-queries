@@ -5,10 +5,9 @@ prepare cancel_repeats (text) as
     -- TODO: make this based on `query_start` and get pid for min of that
       with mq as (
     select min(pid) as min_pid
-         , q.query 
+         , query 
       from timed_activity
-      join q using (query)
-     group by q.query
+     group by query
     having count(*) > 1
     )
     -- =======
