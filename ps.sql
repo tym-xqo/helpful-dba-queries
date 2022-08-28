@@ -12,4 +12,5 @@ select pid
  where state != 'idle'
    and backend_type = 'client backend'
    and pid != pg_backend_pid()
+  --  and usename in ('boost_reporting', 'boost_etl_user')
  order by xact_start;
