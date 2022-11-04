@@ -33,4 +33,4 @@ prepare cancel_repeats (text) as
     ;
 -- pass the prepared statement a query snippet
 -- it matches using `like`
-execute cancel_repeats('%SELECT MAX("activities"."created_at") FROM%');
+execute cancel_repeats('%COPY (WITH scoped_users%');
