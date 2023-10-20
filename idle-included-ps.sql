@@ -9,6 +9,7 @@ select pid
      , wait_event
      , state
   from pg_stat_activity
- where backend_type in ('client backend', 'background worker')
-   and pid != pg_backend_pid()
+ where --backend_type in ('client backend', 'background worker')
+   --and 
+   pid != pg_backend_pid()
  order by query_start nulls last
