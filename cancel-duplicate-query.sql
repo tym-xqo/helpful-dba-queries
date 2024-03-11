@@ -1,4 +1,4 @@
-prepare cancel_repeats (text) as
+prepare cancel_repeats as  -- (text) as
     -- fetch repeated queries matching query snippet pattern
 
     -- fetch minimum pid for each repeated query
@@ -35,4 +35,4 @@ prepare cancel_repeats (text) as
     ;
 -- pass the prepared statement a query snippet
 -- it matches using `like`
-execute cancel_repeats('%COPY%')
+execute cancel_repeats('%SELECT "confidence_levels"%')

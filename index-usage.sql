@@ -31,5 +31,5 @@ select relname
           join pg_index as idx
             on (idx.indexrelid = stai.indexrelid)
        ) as sub_inner
- order by rows_in_table desc
+ order by "table" --rows_in_table desc
         , hit_rate asc;

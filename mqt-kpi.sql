@@ -7,6 +7,7 @@ select sum(total_exec_time)/sum(calls) as mean_query_time
   from pg_stat_statements
  where lower(query) != 'select $1'
    and query not like '%pg_stat_%'
+   and query not ilike 'explain%'
    and userid in (select oid 
                     from pg_authid 
                    where rolname in (
@@ -30,6 +31,7 @@ select sum(total_exec_time)/sum(calls)
   from pg_stat_statements
  where lower(query) != 'select $1'
    and query not like '%pg_stat_%'
+   and query not ilike 'explain%'
    and userid in (select oid 
                     from pg_authid 
                    where rolname in (
