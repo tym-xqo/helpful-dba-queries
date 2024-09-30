@@ -2,6 +2,7 @@ with rtsize as (
     select table_schema
          , table_name
          , pg_relation_size( quote_ident(table_schema) || '.' || quote_ident( table_name ) ) as size
+         , pg_indexes_size( quote_ident(table_schema) || '.' || quote_ident( table_name ) ) as indexes_size
          , pg_total_relation_size( quote_ident( table_schema ) || '.' || quote_ident( table_name ) ) as total_size  
       from information_schema.tables 
      where table_type = 'BASE TABLE' 
@@ -11,6 +12,7 @@ with rtsize as (
 select table_schema
      , table_name
      , pg_size_pretty(size) as size
+     , pg_size_pretty(indexes_size) as indexes_size
      , pg_size_pretty(total_size) as total_size 
   from rtsize x 
  order by --x.size desc
