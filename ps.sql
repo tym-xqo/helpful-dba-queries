@@ -6,6 +6,7 @@ select pid
      , usename
      , application_name
      , left(query, 25) || '..' || right(query, 25) as query_snippet
+--,query
      , wait_event_type
      , wait_event
      , state
