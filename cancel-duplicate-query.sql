@@ -15,24 +15,26 @@ prepare cancel_repeats as  -- (text) as
     -- Uncomment below (and comment out the other main `select`) to check for
     -- repeated queries without cancelling
     -- =======
-    select min_pid
-         , t.pid
-         , mq.query
-         , t.usename
-      from mq
-      join timed_activity as t
-     using (query)
-     order by mq.query
+    -- select min_pid
+    --      , t.pid
+    --      , mq.query
+    --      , t.usename
+    --   from mq
+    --   join timed_activity as t
+    --  using (query)
+    --  order by mq.query
     -- =======
     -- cancel all pids except the min one
     -- =======
-    -- select pg_cancel_backend(t.pid)
-    --   from mq
-    --   join timed_activity t
-    --  using (query)
-    --  where t.pid != min_pid
+    select pg_cancel_backend(t.pid)
+      from mq
+      join timed_activity t
+     using (query)
+     where t.pid != min_pid
     -- =======
     ;
 -- pass the prepared statement a query snippet
 -- it matches using `like`
-execute cancel_repeats('%SELECT "confidence_levels"%')
+execute cancel_repeats('%SELECT question_categories.name%')
+;
+deallocate cancel_repeats;
